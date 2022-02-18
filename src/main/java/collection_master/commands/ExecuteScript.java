@@ -3,7 +3,7 @@ package collection_master.commands;
 import collection_master.commands.interfaces.Command;
 import collection_master.interact.ScriptInteractor;
 import collection_master.interact.UserInteractor;
-import main.CommandRouter;
+import collection_master.main.CommandRouter;
 import collection_master.essentials.Vehicle;
 
 import java.io.File;

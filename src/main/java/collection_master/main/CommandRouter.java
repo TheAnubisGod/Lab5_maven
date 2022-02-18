@@ -1,4 +1,4 @@
-package main;
+package collection_master.main;
 
 import collection_master.commands.*;
 import collection_master.commands.interfaces.Command;
@@ -91,6 +91,8 @@ public abstract class CommandRouter {
                     return null;
                 }
                 return new InfoById(interactor, Args);
+            case "":
+                return null;
             default:
                 interactor.broadcastMessage("Команды '" + command + "' не существует. " +
                         "Воспользуйтесь 'help' для получения списка команд.", true);

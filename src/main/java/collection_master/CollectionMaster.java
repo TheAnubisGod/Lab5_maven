@@ -4,7 +4,7 @@ import collection_master.commands.interfaces.Command;
 import collection_master.interact.ConsoleInteractor;
 import collection_master.interact.UserInteractor;
 import collection_master.essentials.StackInfo;
-import main.CommandRouter;
+import collection_master.main.CommandRouter;
 import collection_master.main.VehicleStackXmlParser;
 import collection_master.essentials.Vehicle;
 
@@ -80,6 +80,9 @@ public abstract class CollectionMaster {
         while (run) {
             interactor.broadcastMessage("\nВведите команду: ", false);
             String potentialCommand = interactor.getData();
+            if (potentialCommand==null){
+                continue;
+            }
             Command command = CommandRouter.getCommand(potentialCommand, false, interactor, file, initDateTime);
             if (command != null) {
                 run = command.execute(collection);

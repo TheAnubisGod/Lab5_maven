@@ -1,6 +1,9 @@
 package collection_master.interact;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.NoSuchElementException;
 
 /**
  * Класс получения данных из консоли.
@@ -9,11 +12,21 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class ConsoleInteractor implements UserInteractor {
-    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public String getData() {
-        return scanner.nextLine();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return reader.readLine();
+        } catch (NoSuchElementException | IOException e) {
+            try {
+                System.in.reset();
+            } catch (IOException ex) {
+                broadcastMessage("Завершение работы.", true);
+                return "exit";
+            }
+            return "";
+        }
     }
 
     @Override
